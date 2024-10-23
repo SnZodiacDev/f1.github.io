@@ -7,6 +7,7 @@ let car, aiCars = [];
 let isDesigningTrack = false;
 let speed = 0.1;
 let turnSpeed = 0.05;
+let carBody;
 
 function init() {
     // Create the scene, camera, and renderer
@@ -23,8 +24,7 @@ function init() {
     // Create the car
     createCar();
 
-    camera.position.z = 10;
-    camera.position.y = 5;
+    camera.position.set(0, 5, 10);
 
     animate();
 }
@@ -36,12 +36,11 @@ function createCar() {
     scene.add(car);
     
     // Physics body for the car
-    const carShape = new CANNON.Box(new CANNON.Vec3(0.25, 0.25, 0.5));
-    const carBody = new CANNON.Body({
+    carBody = new CANNON.Body({
         mass: 1,
         position: new CANNON.Vec3(0, 1, 0)
     });
-    carBody.addShape(carShape);
+    carBody.addShape(new CANNON.Box(new CANNON.Vec3(0.25, 0.25, 0.5)));
     world.addBody(carBody);
 }
 
@@ -85,10 +84,9 @@ function addTrackSegment() {
     trackSegments.push(track);
     
     // Physics for the track
-    const trackShape = new CANNON.Box(new CANNON.Vec3(0.5, 0.1, 5));
     const trackBody = new CANNON.Body({ mass: 0 });
     trackBody.position.set(track.position.x, track.position.y, track.position.z);
-    trackBody.addShape(trackShape);
+    trackBody.addShape(new CANNON.Box(new CANNON.Vec3(0.5, 0.1, 5)));
     world.addBody(trackBody);
 }
 
@@ -101,25 +99,20 @@ function removeTrackSegment() {
 
 document.addEventListener('keydown', (event) => {
     if (isDesigningTrack) {
-        if (event.key === 'a') {
-            addTrackSegment(); // Add track segment with 'A'
-        }
-        if (event.key === 'd') {
-            removeTrackSegment(); // Remove last segment with 'D'
-        }
+        // Track designer mode does not allow car movement
     } else {
         // Control the car in racing mode
         if (event.key === 'ArrowUp') {
-            car.position.z -= speed; // Move forward
+            carBody.velocity.z = -speed; // Move forward
         }
         if (event.key === 'ArrowDown') {
-            car.position.z += speed; // Move backward
+            carBody.velocity.z = speed; // Move backward
         }
         if (event.key === 'ArrowLeft') {
-            car.rotation.y += turnSpeed; // Turn left
+            carBody.angularVelocity.y = turnSpeed; // Turn left
         }
         if (event.key === 'ArrowRight') {
-            car.rotation.y -= turnSpeed; // Turn right
+            carBody.angularVelocity.y = -turnSpeed; // Turn right
         }
     }
 });

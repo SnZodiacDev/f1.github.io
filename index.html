@@ -5,13 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Racing Game with Track Designer</title>
     <style>
-        body { margin: 0; }
+        body { margin: 0; font-family: Arial, sans-serif; }
         canvas { display: block; }
-        #menu { position: absolute; top: 10px; left: 10px; color: white; }
+        #menu { position: absolute; top: 10px; left: 10px; color: white; z-index: 1; }
+        #track-controls { margin-top: 10px; }
+        button { margin: 5px; padding: 10px; }
     </style>
 </head>
 <body>
     <div id="menu">
+        <h2>Track Designer</h2>
+        <div id="track-controls">
+            <button onclick="addTrackSegment()">Add Track Segment</button>
+            <button onclick="removeTrackSegment()">Remove Track Segment</button>
+        </div>
         <button onclick="toggleTrackDesigner()">Toggle Track Designer</button>
         <button onclick="startRace()">Start Race</button>
     </div>
