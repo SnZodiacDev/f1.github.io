@@ -4,23 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Racing Game with Track Designer</title>
-    <style>
-        body { margin: 0; font-family: Arial, sans-serif; }
-        canvas { display: block; }
-        #menu { position: absolute; top: 10px; left: 10px; color: white; z-index: 1; }
-        #track-controls { margin-top: 10px; }
-        button { margin: 5px; padding: 10px; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="menu">
         <h2>Track Designer</h2>
         <div id="track-controls">
-            <button onclick="addTrackSegment()">Add Track Segment</button>
-            <button onclick="removeTrackSegment()">Remove Track Segment</button>
+            <button class="ui-button" onclick="addTrackSegment()">Add Segment</button>
+            <button class="ui-button" onclick="removeTrackSegment()">Remove Segment</button>
         </div>
-        <button onclick="toggleTrackDesigner()">Toggle Track Designer</button>
-        <button onclick="startRace()">Start Race</button>
+        <button class="ui-button" onclick="toggleTrackDesigner()">Toggle Designer</button>
+        <button class="ui-button" onclick="startRace()">Start Race</button>
     </div>
     <script src="https://threejs.org/build/three.js"></script>
     <script src="https://cdn.rawgit.com/schteppe/cannon.js/master/build/cannon.min.js"></script>
