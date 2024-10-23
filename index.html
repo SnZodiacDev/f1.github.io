@@ -1,1 +1,22 @@
-<h1>hi</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Racing Game with Track Designer</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+        #menu { position: absolute; top: 10px; left: 10px; color: white; }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <button onclick="toggleTrackDesigner()">Toggle Track Designer</button>
+        <button onclick="startRace()">Start Race</button>
+    </div>
+    <script src="https://threejs.org/build/three.js"></script>
+    <script src="https://cdn.rawgit.com/schteppe/cannon.js/master/build/cannon.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
